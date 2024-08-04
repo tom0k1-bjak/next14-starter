@@ -7,20 +7,19 @@ const PostCard = ({ post }) => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/18986078/pexels-photo-18986078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
-            fill
-            className={styles.img}
-          />
-        </div>
-        <span className={styles.date}>2024/08/03</span>
+        {post.img && (
+          <div className={styles.imgContainer}>
+            <Image src={post.img} alt="" fill className={styles.img} />
+          </div>
+        )}
+        <span className={styles.date}>
+          {post.createdAt.toString().slice(4, 16)}
+        </span>
       </div>
       <div className={styles.bottom}>
         <h1 className={styles.title}>{post.title}</h1>
         <p className={styles.desc}>{post.body}</p>
-        <Link className={styles.link} href={`/blog/${post.id}`}>
+        <Link className={styles.link} href={`/blog/${post.slug}`}>
           READ MORE
         </Link>
       </div>
